@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class RaceCircle : MonoBehaviour
 {
-
-	[Header("Path")]
-	public PathNode[] Path;
-	public PathHelper[] Helpers;
-
 	// Start is called before the first frame update
 	void Start()
     {
@@ -21,60 +16,7 @@ public class RaceCircle : MonoBehaviour
         
     }
 
-	[System.Serializable]
-	public struct PathNode
-	{
-		public Vector3 Position;
-		public Vector3 AlternativePosition;
-		public Vector3 FallbackPosition;
-        public float RecommendedSpeedMultiplier;
-        public float Drift;
-
-        public bool HasAlternative
-		{
-			get
-			{
-				return this.Position != this.AlternativePosition;
-			}
-		}
-
-		public bool HasFallback
-		{
-			get
-			{
-				return this.Position != this.FallbackPosition;
-			}
-		}
-
-		public Vector3 GetPosition(bool alternative)
-		{
-			if (alternative)
-			{
-				return this.AlternativePosition;
-			}
-			else
-			{
-				return this.Position;
-			}
-		}
-
-		public void Uniformize()
-		{
-			this.AlternativePosition = this.Position;
-			this.FallbackPosition = this.Position;
-		}
-	}
-
-	[System.Serializable]
-	public struct PathHelper
-	{
-		public Vector3 Start;
-		public float Radius;
-
-		public Vector3 Goal;
-	}
-
-	private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
 	{
 		foreach(Transform t in transform)
         {

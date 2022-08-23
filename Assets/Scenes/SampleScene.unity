@@ -147,12 +147,87 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124683525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.01, y: -0.5, z: -25.2}
+  m_LocalPosition: {x: 18.75, y: -0.5, z: -25.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 878587880}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &153962808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 153962810}
+  - component: {fileID: 153962809}
+  m_Layer: 0
+  m_Name: Path
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &153962809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153962808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2625d2ea0860a3f478a0ae1c2cdf92e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path:
+  - Position: {x: 0, y: 0, z: 0}
+    AlternativePosition: {x: 0, y: 0, z: 0}
+    FallbackPosition: {x: 5, y: 5, z: 5}
+    RecommendedSpeedMultiplier: 1
+    Drift: 100
+  - Position: {x: 0, y: 10, z: 10}
+    AlternativePosition: {x: 5, y: 5, z: 5}
+    FallbackPosition: {x: 5, y: 5, z: 0}
+    RecommendedSpeedMultiplier: 1
+    Drift: 100
+  - Position: {x: 10, y: 10, z: 10}
+    AlternativePosition: {x: 10, y: 10, z: 10}
+    FallbackPosition: {x: 0, y: 5, z: 5}
+    RecommendedSpeedMultiplier: 1
+    Drift: 100
+  - Position: {x: 10, y: 10, z: 0}
+    AlternativePosition: {x: 20, y: 20, z: 20}
+    FallbackPosition: {x: 0, y: 5, z: 5}
+    RecommendedSpeedMultiplier: 1
+    Drift: 100
+  Helpers:
+  - Start: {x: 10, y: 0, z: 10}
+    Radius: 0
+    Goal: {x: 10, y: 0, z: 20}
+  - Start: {x: 0, y: 0, z: 0}
+    Radius: 0
+    Goal: {x: 10, y: 0, z: 0}
+  - Start: {x: 0, y: 0, z: 0}
+    Radius: 0
+    Goal: {x: 0, y: 0, z: 10}
+--- !u!4 &153962810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153962808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &421348701
 LightingSettings:
@@ -334,7 +409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &659615011
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -426,7 +501,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RaceCircle: {fileID: 878587881}
-  RaceCircle: {fileID: 878587881}
 --- !u!54 &659615016
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -441,7 +515,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &705507993
 GameObject:
@@ -561,7 +635,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783320798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.28, y: -0.5, z: -29.94}
+  m_LocalPosition: {x: -10.41, y: -0.5, z: -29.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -620,26 +694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4082401bbb0941449c03aedf2704bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Path:
-  - Position: {x: 0, y: 10, z: 0}
-    AlternativePosition: {x: 0, y: 0, z: 0}
-    FallbackPosition: {x: 0, y: 0, z: 0}
-    RecommendedSpeedMultiplier: 0
-    Drift: 1
-  - Position: {x: 0, y: 0, z: 10}
-    AlternativePosition: {x: 0, y: 0, z: 0}
-    FallbackPosition: {x: 0, y: 0, z: 0}
-    RecommendedSpeedMultiplier: 0
-    Drift: 1
-  - Position: {x: 0, y: 0, z: 10}
-    AlternativePosition: {x: 0, y: 0, z: 0}
-    FallbackPosition: {x: 0, y: 0, z: 0}
-    RecommendedSpeedMultiplier: 0
-    Drift: 1
-  Helpers:
-  - Start: {x: -191.9273, y: 20, z: 36.94069}
-    Radius: 0
-    Goal: {x: -196.4306, y: 20, z: 50.46081}
 --- !u!1 &899009665
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +718,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899009665}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.34, y: -0.5, z: -19.22}
+  m_LocalPosition: {x: -31.47, y: -0.5, z: -19.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -810,7 +864,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348980009}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.84, y: -0.5, z: -5.83}
+  m_LocalPosition: {x: -31.97, y: -0.5, z: -5.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -841,7 +895,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508867262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.1, y: -0.5, z: -18.63}
+  m_LocalPosition: {x: -9.23, y: -0.5, z: -18.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -872,7 +926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732640950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.6, y: -0.5, z: -7.51}
+  m_LocalPosition: {x: -8.73, y: -0.5, z: -7.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -903,7 +957,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778338246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.86, y: 0.5, z: 2.74}
+  m_LocalPosition: {x: 13.86, y: -0.5, z: 2.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -929,7 +983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2061351269
 BoxCollider:
   m_ObjectHideFlags: 0
