@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RightArm
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Antenna
+    m_Weight: 0
+  - m_Path: Armature
+    m_Weight: 0
+  - m_Path: Armature/root
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base/neck
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base/neck/head
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base/neck/head/antenna
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base/neck/head/antenna/antenna_end
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base/neck/head/hair.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base/neck/head/hair.R
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base/neck/head/hairB
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base/neck/head/hairB/hairB2
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base/neck/head/hairB/hairB2/hairB3
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base/neck/head/hairF
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base/neck/head/twintail.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/neck_base/neck/head/twintail.R
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/shoulder.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/shoulder.L/upper_arm.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/shoulder.L/upper_arm.L/forearm.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/shoulder.R
+    m_Weight: 1
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/shoulder.R/upper_arm.R
+    m_Weight: 1
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/shoulder.R/upper_arm.R/forearm.R
+    m_Weight: 1
+  - m_Path: Armature/root/pelvis/pelvis.C/torso/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+    m_Weight: 1
+  - m_Path: Armature/root/pelvis/pelvis.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/pelvis.R
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/skirt.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/skirt.R
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/skirtback.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/skirtback.R
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/skirtside.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/skirtside.R
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/tailroot
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/tailroot/tail1
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/tailroot/tail1/tail2
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/tailroot/tail1/tail2/tail3
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/tailroot/tail1/tail2/tail3/tailfin1
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/tailroot/tail1/tail2/tail3/tailfin2
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/thigh.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/thigh.L/shin.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/thigh.L/shin.L/foot.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/thigh.L/shin.L/foot.L/toe.L
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/thigh.R
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/thigh.R/shin.R
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/thigh.R/shin.R/foot.R
+    m_Weight: 0
+  - m_Path: Armature/root/pelvis/thigh.R/shin.R/foot.R/toe.R
+    m_Weight: 0
+  - m_Path: Armature/root/roomba
+    m_Weight: 0
+  - m_Path: Body
+    m_Weight: 0
+  - m_Path: Roomba
+    m_Weight: 0
