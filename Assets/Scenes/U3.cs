@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class U3 : U2
 {
-    [SerializeField] private RaceCircle RaceCircle;
+    //[SerializeField] private RaceCircle RaceCircle;
 
     private Transform Way;
     // Start is called before the first frame update
@@ -16,7 +16,6 @@ public class U3 : U2
         transform.position = Way.position;
         Way = RaceCircle.GetNextWaypoint(Way);
         transform.LookAt(Way);
-
     }
 
     // Update is called once per frame

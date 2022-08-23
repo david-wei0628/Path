@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class U2 : U1
 {
-    [SerializeField] private RaceCircle RaceCircle;
-    private Transform Way;
+    private Transform Way2;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        Debug.Log("UUI2"); 
-        
+        Debug.Log("UUI2");
+        Way2 = RaceCircle.GetNextWaypoint(Way2);
+        //transform.LookAt(Way2);
     }
     private void Awake()
     {
-        Way = RaceCircle.GetNextWaypoint(Way);
-        transform.position = Way.position;
-        Way = RaceCircle.GetNextWaypoint(Way);
-        transform.LookAt(Way);
+        
     }
     bool bt = false;
     // Update is called once per frame
@@ -30,18 +27,20 @@ public class U2 : U1
         }
         if (bt)
         {
-            transform.position = Vector3.MoveTowards(transform.position, Way.position, Time.deltaTime * 10f);
-            if (Vector3.Distance(transform.position, Way.position) < 0.1f)
+            transform.position = Vector3.Lerp(transform.position, Way2.position, Time.deltaTime * 10f);
+            if (Vector3.Distance(transform.position, Way2.position) < 0.1f)
             {
-                Way = RaceCircle.GetNextWaypoint(Way);
+                Way2 = RaceCircle.GetNextWaypoint(Way2);
             }
         }
-        
+
     }
     protected virtual void UU2()
     {
         //this.gameObject.SetActive(false);
         bt = !bt;
+        transform.position = Way2.position;
+        //Way2 = RaceCircle2.GetNextWaypoint(Way2);
         UU1();
     }
 
