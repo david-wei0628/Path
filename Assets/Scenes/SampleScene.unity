@@ -184,36 +184,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path:
-  - Position: {x: 0, y: 0, z: 0}
-    AlternativePosition: {x: 0, y: 0, z: 0}
-    FallbackPosition: {x: 5, y: 5, z: 5}
-    RecommendedSpeedMultiplier: 1
-    Drift: 100
-  - Position: {x: 0, y: 10, z: 10}
-    AlternativePosition: {x: 5, y: 5, z: 5}
-    FallbackPosition: {x: 5, y: 5, z: 0}
-    RecommendedSpeedMultiplier: 1
-    Drift: 100
-  - Position: {x: 10, y: 10, z: 10}
-    AlternativePosition: {x: 10, y: 10, z: 10}
-    FallbackPosition: {x: 0, y: 5, z: 5}
-    RecommendedSpeedMultiplier: 1
-    Drift: 100
-  - Position: {x: 10, y: 10, z: 0}
-    AlternativePosition: {x: 20, y: 20, z: 20}
-    FallbackPosition: {x: 0, y: 5, z: 5}
-    RecommendedSpeedMultiplier: 1
-    Drift: 100
-  Helpers:
-  - Start: {x: 10, y: 0, z: 10}
-    Radius: 0
-    Goal: {x: 10, y: 0, z: 20}
-  - Start: {x: 0, y: 0, z: 0}
-    Radius: 0
-    Goal: {x: 10, y: 0, z: 0}
-  - Start: {x: 0, y: 0, z: 0}
-    Radius: 0
-    Goal: {x: 0, y: 0, z: 10}
+  - Transform: {x: 5, y: 5, z: 5}
+  - Transform: {x: 10, y: 10, z: 10}
+  - Transform: {x: 20, y: 0, z: 20}
+  - Transform: {x: -5, y: 0, z: -5}
+  Points:
+  - Position2: {x: 5, y: 0, z: 5}
+  - Position2: {x: 10, y: 0, z: 10}
+  - Position2: {x: 15, y: 0, z: 15}
+  - Position2: {x: 20, y: 0, z: 20}
 --- !u!4 &153962810
 Transform:
   m_ObjectHideFlags: 0
@@ -409,7 +388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &659615011
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -957,7 +936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778338246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.86, y: -0.5, z: 2.74}
+  m_LocalPosition: {x: 17.8, y: -0.6, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
