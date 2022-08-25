@@ -429,15 +429,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PR:
-  - position: {x: -15.2903, y: 0, z: 0.11001396}
-    forward: {x: 3, y: 3, z: 3}
-    noemal: {x: 0, y: 0, z: 0}
-  - position: {x: -0.57888055, y: 0, z: 10.817408}
-    forward: {x: 6, y: 6, z: 6}
-    noemal: {x: 0, y: 0, z: 0}
-  - position: {x: 13.670466, y: 0, z: 0}
-    forward: {x: 9, y: 9, z: 9}
-    noemal: {x: 0, y: 0, z: 0}
+  - position: {x: -10, y: 0, z: 0}
+  - position: {x: 0, y: 0, z: 10}
+  - position: {x: 15, y: 0, z: 0}
 --- !u!4 &1237443840
 Transform:
   m_ObjectHideFlags: 0

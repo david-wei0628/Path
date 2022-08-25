@@ -184,15 +184,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path:
-  - Transform: {x: 5, y: 5, z: 5}
-  - Transform: {x: 10, y: 10, z: 10}
-  - Transform: {x: 20, y: 0, z: 20}
-  - Transform: {x: -5, y: 0, z: -5}
-  Points:
-  - Position2: {x: 5, y: 0, z: 5}
-  - Position2: {x: 10, y: 0, z: 10}
-  - Position2: {x: 15, y: 0, z: 15}
-  - Position2: {x: 20, y: 0, z: 20}
+  - Position: {x: 2.1924791, y: 0, z: -12.112505}
+    AlternativePosition: {x: 0, y: 0, z: 0}
+    FallbackPosition: {x: 0, y: 0, z: 0}
+  - Position: {x: 0, y: 0, z: 0}
+    AlternativePosition: {x: 0, y: 0, z: 0}
+    FallbackPosition: {x: 0, y: 0, z: 0}
+  - Position: {x: 0, y: 0, z: 0}
+    AlternativePosition: {x: 0, y: 0, z: 0}
+    FallbackPosition: {x: 0, y: 0, z: 0}
+  - Position: {x: 0, y: 0, z: 0}
+    AlternativePosition: {x: 0, y: 0, z: 0}
+    FallbackPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &153962810
 Transform:
   m_ObjectHideFlags: 0

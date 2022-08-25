@@ -6,7 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(Point))]
 public class PointEditor : Editor
 {
-    private Mode mode;
+    //private Mode mode;
 
     private void OnSceneGUI()
     {
@@ -15,22 +15,16 @@ public class PointEditor : Editor
         {
             return;
         }
-
-        switch(this.mode)
+        for(int i = 0; i < point.PR.Length; i++)
         {
-            case Mode.Waypoints:
-                for(int i = 0; i < point.PR.Length; i++)
-                {
-                    Point.PointR node = point.PR[i];
-                    if(this.Handle(ref node.position))
-                    {
-                        Undo.RecordObject(point, "Waypoint");
-                        point.PR[i] = node;
-                        EditorUtility.SetDirty(point);
-                    }
-                }
-                break;
-        }
+            Point.PointR node = point.PR[i];
+            if(this.Handle(ref node.position))
+            {
+                Undo.RecordObject(point, "Waypoint");
+                point.PR[i] = node;
+                EditorUtility.SetDirty(point);
+            }
+         }
     }
 
     private bool Handle(ref Vector3 position)
@@ -39,12 +33,5 @@ public class PointEditor : Editor
         bool changed = newPosition != position;
         position = newPosition;
         return changed;
-    }
-
-    private enum Mode
-    {
-        Waypoints,
-        AlternateWaypoints,
-        FallbackWaypoints,
     }
 }
