@@ -21,11 +21,11 @@ public class U3 : U2
     // Update is called once per frame
     protected void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             UU2();
         }
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             U4.U4U.UU3();
         }
@@ -35,11 +35,6 @@ public class U3 : U2
             Way = RaceCircle.GetNextWaypoint(Way);
         }
     }
-
-    //protected override void UU2()
-    //{
-    //    base.UU2();
-    //}
 
     protected override void UU2()
     {

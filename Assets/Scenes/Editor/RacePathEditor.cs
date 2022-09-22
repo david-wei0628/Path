@@ -18,7 +18,7 @@ public class RacePathEditor : Editor
             RacePath.PathNode node = RacePoint.Path[i];
             if (this.Handle(ref node.Position))
             {
-                //Undo.RecordObject(RacePoint, "Waypoint");
+                Undo.RecordObject(RacePoint, "Waypoint");
                 RacePoint.Path[i] = node;
                 EditorUtility.SetDirty(RacePoint);
             }

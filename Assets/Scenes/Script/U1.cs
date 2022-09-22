@@ -5,6 +5,8 @@ using UnityEngine;
 public class U1 : MonoBehaviour
 {
     [SerializeField] public RaceCircle RaceCircle;
+    [SerializeField] public RacePath RacePath;
+    //public RaceCircle RaceCircle;   
     // Start is called before the first frame update
     protected virtual void Start()
     {
