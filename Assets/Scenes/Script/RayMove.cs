@@ -13,10 +13,13 @@ public class RayMove : MonoBehaviour
     Ray ray;
     RaycastHit hit;
     Vector3 maps;
+    //bool movelimit = true;
+
     // Start is called before the first frame update
     void Start()
     {
         CamearTrans.transform.position = new Vector3(PlayTrans.position.x, PlayTrans.position.y + 4, PlayTrans.position.z - 7);
+        this.transform.localEulerAngles = new Vector3(0,0,0);
         offset = CameTrans.position - PlayTrans.position;
         MoveSpeed = Time.deltaTime * 5;
         CameTrans.position = offset + PlayTrans.position;
@@ -39,42 +42,47 @@ public class RayMove : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             CameRat();
+            Debug.Log(Input.GetAxis("Mouse Y"));
         }
 
-        //if (Input.GetMouseButtonUp(1))
-        //{
-        //    CamerTrans();
-        //}
-
+        if(Input.GetKey(KeyCode.Z))
+        {
+            Debug.Log(CamearTrans.transform.localEulerAngles);
+        }
         if (Input.GetAxis("Vertical") != 0)
         {
-            //this.transform.Translate(0, 0, Input.GetAxis("Vertical") * MoveSpeed);
-            if (Input.GetAxis("Vertical") > 0)
-            {
-                this.transform.rotation = Quaternion.Euler(0, 0, 0);
-                this.transform.Translate(0, 0, Input.GetAxis("Vertical") * MoveSpeed);
-            }
-            else if (Input.GetAxis("Vertical") < 0)
-            {
-                this.transform.rotation = Quaternion.Euler(0, 180, 0);
-                this.transform.Translate(0, 0, -1 * Input.GetAxis("Vertical") * MoveSpeed);
-            }
+            this.transform.Translate(0, 0, Input.GetAxis("Vertical") * MoveSpeed);
+            //if (Input.GetAxis("Vertical") > 0)
+            //{
+            //    this.transform.rotation = Quaternion.Euler(0, 0, 0);
+            //    CamearTrans.transform.localEulerAngles = new Vector3(InitCoor.x, InitCoor.y, InitCoor.z);
+            //    CamerTrans();
+            //    this.transform.Translate(0, 0, Input.GetAxis("Vertical") * MoveSpeed);
+            //}
+            //else if (Input.GetAxis("Vertical") < 0)
+            //{
+            //    this.transform.rotation = Quaternion.Euler(0, 180, 0);
+            //    CamerTrans();
+            //    CamearTrans.transform.localEulerAngles = new Vector3(InitCoor.x, InitCoor.y, InitCoor.z);
+            //    this.transform.Translate(0, 0, -Input.GetAxis("Vertical") * MoveSpeed);
+            //}
         }
 
         if (Input.GetAxis("Horizontal") != 0)
         {
-            //this.transform.Translate(Input.GetAxis("Horizontal") * MoveSpeed, 0, 0);
-            if(Input.GetAxis("Horizontal") > 0)
-            {
-                this.transform.rotation = Quaternion.Euler(0, 90, 0);
-                this.transform.Translate(0, 0, Input.GetAxis("Horizontal") * MoveSpeed);
-            }
-            else if(Input.GetAxis("Horizontal") < 0)
-            {
-                this.transform.rotation = Quaternion.Euler(0, 270, 0);
-                this.transform.Translate(0, 0, -1 * Input.GetAxis("Horizontal") * MoveSpeed);
-            }
+            this.transform.Translate(Input.GetAxis("Horizontal") * MoveSpeed, 0, 0);
+            //if(Input.GetAxis("Horizontal") > 0)
+            //{
+            //    this.transform.rotation = Quaternion.Euler(0, 90, 0);
+            //    this.transform.Translate(0, 0, Input.GetAxis("Horizontal") * MoveSpeed);
+            //}
+            //else if(Input.GetAxis("Horizontal") < 0)
+            //{
+            //    this.transform.rotation = Quaternion.Euler(0, 270, 0);
+            //    this.transform.Translate(0, 0, -1 * Input.GetAxis("Horizontal") * MoveSpeed);
+            //}
         }
+
 
     }
 
@@ -105,14 +113,16 @@ public class RayMove : MonoBehaviour
         //return Physics.Raycast(ray, out hit, 3500);
         if (Vector3.Distance(this.transform.position, maps) < 100f)
         {
+            //this.transform.LookAt(maps);
+           // CamearTrans.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x + 20, -transform.localEulerAngles.y, 0);
             PlayMove();
         }
     }
 
     void PlayMove()
     {
-        this.transform.position = Vector3.Lerp(this.transform.position, maps, 0.1f);
-
+        this.transform.position = Vector3.Slerp(this.transform.position, maps, 0.1f);
+        //this.transform.LookAt(maps);
         if (Vector3.Distance(this.transform.position, maps) > 0.1f )
         {
             if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
@@ -130,9 +140,34 @@ public class RayMove : MonoBehaviour
     {
         CamearTrans.transform.RotateAround(this.transform.position, Vector3.up, Input.GetAxis("Mouse X") * 5);
         CamearTrans.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 5);
-        CamearTrans.transform.LookAt(this.transform.position);
-        CamearTrans.transform.localEulerAngles = new Vector3(CamearTrans.transform.localEulerAngles.x -10 , CamearTrans.transform.localEulerAngles.y, 0);
-        //CamerTrans();
+
+        //if (CamearTrans.transform.localEulerAngles.x >= 40)
+        //{
+        //    if (Input.GetAxis("Mouse Y") > 0)
+        //    {
+        //        CamearTrans.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 5);
+        //    }
+        //    else
+        //    {
+        //        CamearTrans.transform.localEulerAngles = new Vector3(30, CamearTrans.transform.localEulerAngles.y, 0);
+        //    }
+        //}
+        //else if (CamearTrans.transform.localEulerAngles.x <= -10)
+        //{
+        //    if (Input.GetAxis("Mouse Y") < 0)
+        //    {
+        //        CamearTrans.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 5);
+        //    }
+        //    else
+        //    {
+        //        CamearTrans.transform.localEulerAngles = new Vector3(-5, CamearTrans.transform.localEulerAngles.y, 0);
+        //    }
+        //}
+        //else if (CamearTrans.transform.localEulerAngles.x > -10 && CamearTrans.transform.localEulerAngles.x < 40)
+        //{
+        //    CamearTrans.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 5);
+        //}
+        CamerTrans();
         //上下範圍 X軸 40~-10
         //Y,Z做導向,Z平行於場景  X 做指向
 
@@ -141,6 +176,17 @@ public class RayMove : MonoBehaviour
     void CamerTrans()
     {
         CamearTrans.transform.LookAt(this.transform.position);
-        CamearTrans.transform.rotation = Quaternion.Euler(CameTrans.localEulerAngles.x - 10, CameTrans.localEulerAngles.y, CameTrans.localEulerAngles.z);        
+        CamearTrans.transform.localEulerAngles = new Vector3(CameTrans.localEulerAngles.x-20, CameTrans.localEulerAngles.y, 0);        
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log(collision + "1");
+    //    //movelimit = false;
+    //}
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log(other + "2");
+    //}
 }
