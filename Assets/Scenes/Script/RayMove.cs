@@ -42,7 +42,7 @@ public class RayMove : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             CameRat();
-            Debug.Log(Input.GetAxis("Mouse Y"));
+            //Debug.Log(Input.GetAxis("Mouse Y"));
         }
 
         if(Input.GetKey(KeyCode.Z))
@@ -138,45 +138,52 @@ public class RayMove : MonoBehaviour
 
     void CameRat()
     {
-        CamearTrans.transform.RotateAround(this.transform.position, Vector3.up, Input.GetAxis("Mouse X") * 5);
-        CamearTrans.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 5);
+        //CamearTrans.transform.RotateAround(this.transform.position, Vector3.up, Input.GetAxis("Mouse X") * 5);
+        //CamearTrans.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 5);
 
-        //if (CamearTrans.transform.localEulerAngles.x >= 40)
-        //{
-        //    if (Input.GetAxis("Mouse Y") > 0)
-        //    {
-        //        CamearTrans.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 5);
-        //    }
-        //    else
-        //    {
-        //        CamearTrans.transform.localEulerAngles = new Vector3(30, CamearTrans.transform.localEulerAngles.y, 0);
-        //    }
-        //}
-        //else if (CamearTrans.transform.localEulerAngles.x <= -10)
-        //{
-        //    if (Input.GetAxis("Mouse Y") < 0)
-        //    {
-        //        CamearTrans.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 5);
-        //    }
-        //    else
-        //    {
-        //        CamearTrans.transform.localEulerAngles = new Vector3(-5, CamearTrans.transform.localEulerAngles.y, 0);
-        //    }
-        //}
-        //else if (CamearTrans.transform.localEulerAngles.x > -10 && CamearTrans.transform.localEulerAngles.x < 40)
-        //{
-        //    CamearTrans.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 5);
-        //}
+        if (Input.GetAxis("Mouse X") != 0)
+        {
+            CamearTrans.transform.RotateAround(this.transform.position, Vector3.up, Input.GetAxis("Mouse X") * 5);
+        }
+        else
+        {
+            if(Input.GetAxis("Mouse Y") < 0)
+            {
+                if(CamearTrans.transform.localEulerAngles.x > 40 && CamearTrans.transform.localEulerAngles.x < 180)
+                {
+                    CamearTrans.transform.localEulerAngles = new Vector3(30, CamearTrans.transform.localEulerAngles.y, 0);
+                }
+                else
+                {
+                    CamearTrans.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 5);
+                }
+            }
+            else if (Input.GetAxis("Mouse Y") > 0)
+            {
+                if (CamearTrans.transform.localEulerAngles.x < 10)
+                {
+                    CamearTrans.transform.localEulerAngles = new Vector3(0, CamearTrans.transform.localEulerAngles.y, 0);
+                }
+                else
+                {
+                    CamearTrans.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 5);
+                }
+                //CamearTrans.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 5);
+                //Debug.Log(CamearTrans.transform.localEulerAngles.x);
+            }
+        }
+        
         CamerTrans();
         //上下範圍 X軸 40~-10
         //Y,Z做導向,Z平行於場景  X 做指向
-
     }
 
     void CamerTrans()
     {
         CamearTrans.transform.LookAt(this.transform.position);
+        Debug.Log(CamearTrans.transform.localEulerAngles.x);
         CamearTrans.transform.localEulerAngles = new Vector3(CameTrans.localEulerAngles.x-20, CameTrans.localEulerAngles.y, 0);        
+        Debug.Log(CamearTrans.transform.localEulerAngles.x);
     }
 
     //private void OnCollisionEnter(Collision collision)
