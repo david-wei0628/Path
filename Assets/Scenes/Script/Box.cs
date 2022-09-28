@@ -18,10 +18,10 @@ public class Box : MonoBehaviour
         
         if(Input.GetMouseButton(1))
         {
-            //transform.RotateAround(box.transform.position, Vector3.up, Input.GetAxis("Mouse X") * 10);
-            CA.transform.RotateAround(this.transform.position, Vector3.up, Input.GetAxis("Mouse X") * 10);
-            //transform.RotateAround(box.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 10);
-            CA.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 10);
+            ////transform.RotateAround(box.transform.position, Vector3.up, Input.GetAxis("Mouse X") * 10);
+            //CA.transform.RotateAround(this.transform.position, Vector3.up, Input.GetAxis("Mouse X") * 10);
+            ////transform.RotateAround(box.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 10);
+            //CA.transform.RotateAround(this.transform.position, Vector3.left, Input.GetAxis("Mouse Y") * 10);
             box.transform.LookAt(this.transform.position);
         }
     }

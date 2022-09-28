@@ -7,6 +7,7 @@ public class RayMove : MonoBehaviour
     public Transform PlayTrans;
     public Transform CameTrans;
     public Camera CamearTrans;
+    public GameObject SeBox;
     private Vector3 offset;
     float distance = 0;
     float MoveSpeed;
@@ -18,6 +19,9 @@ public class RayMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        QualitySettings.vSyncCount = 0;//垂直同步
+        Application.targetFrameRate = 100;//FPS禎數
+
         CamearTrans.transform.position = new Vector3(PlayTrans.position.x, PlayTrans.position.y + 4, PlayTrans.position.z - 7);
         this.transform.localEulerAngles = new Vector3(0,0,0);
         offset = CameTrans.position - PlayTrans.position;
@@ -29,7 +33,7 @@ public class RayMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        SeBox.transform.localEulerAngles = new Vector3(0, CamearTrans.transform.localEulerAngles.y, 0);
         if (Input.GetAxis("Mouse ScrollWheel") != 0)
         {
             ScrollView();
@@ -45,42 +49,33 @@ public class RayMove : MonoBehaviour
             //Debug.Log(Input.GetAxis("Mouse Y"));
         }
 
-        if(Input.GetKey(KeyCode.Z))
+        if(Input.GetKeyDown(KeyCode.Z))
         {
-            Debug.Log(CamearTrans.transform.localEulerAngles);
+            Debug.Log("LocoR" + CamearTrans.transform.localEulerAngles);
+            Debug.Log("LocoP" + CamearTrans.transform.localPosition);
+            Debug.Log("Rot" + CamearTrans.transform.rotation);
+            Debug.Log("Pos" + CamearTrans.transform.position);
         }
         if (Input.GetAxis("Vertical") != 0)
         {
-            this.transform.Translate(0, 0, Input.GetAxis("Vertical") * MoveSpeed);
-            //if (Input.GetAxis("Vertical") > 0)
-            //{
-            //    this.transform.rotation = Quaternion.Euler(0, 0, 0);
-            //    CamearTrans.transform.localEulerAngles = new Vector3(InitCoor.x, InitCoor.y, InitCoor.z);
-            //    CamerTrans();
-            //    this.transform.Translate(0, 0, Input.GetAxis("Vertical") * MoveSpeed);
-            //}
-            //else if (Input.GetAxis("Vertical") < 0)
-            //{
-            //    this.transform.rotation = Quaternion.Euler(0, 180, 0);
-            //    CamerTrans();
-            //    CamearTrans.transform.localEulerAngles = new Vector3(InitCoor.x, InitCoor.y, InitCoor.z);
-            //    this.transform.Translate(0, 0, -Input.GetAxis("Vertical") * MoveSpeed);
-            //}
+            KeyBoardMoveCamera(Input.GetAxis("Vertical"));
+            //this.transform.Translate(0, 0, Input.GetAxis("Vertical") * MoveSpeed);
         }
 
         if (Input.GetAxis("Horizontal") != 0)
         {
-            this.transform.Translate(Input.GetAxis("Horizontal") * MoveSpeed, 0, 0);
-            //if(Input.GetAxis("Horizontal") > 0)
-            //{
-            //    this.transform.rotation = Quaternion.Euler(0, 90, 0);
-            //    this.transform.Translate(0, 0, Input.GetAxis("Horizontal") * MoveSpeed);
-            //}
-            //else if(Input.GetAxis("Horizontal") < 0)
-            //{
-            //    this.transform.rotation = Quaternion.Euler(0, 270, 0);
-            //    this.transform.Translate(0, 0, -1 * Input.GetAxis("Horizontal") * MoveSpeed);
-            //}
+            if (Input.GetAxis("Horizontal") > 0)
+            {
+                //this
+            }
+
+            KeyBoardMoveCamera(Input.GetAxis("Horizontal"));
+            //this.transform.Translate(0, 0, Input.GetAxis("Horizontal") * MoveSpeed);
+        }
+
+        if (Input.GetAxis("Jump") != 0 && transform.position.y <= 3)
+        {
+            this.transform.Translate(0, Input.GetAxis("Jump") * MoveSpeed, 0);
         }
 
 
@@ -110,11 +105,10 @@ public class RayMove : MonoBehaviour
         maps = hit.point;
         maps.y = this.transform.position.y;
         Debug.DrawLine(CamearTrans.transform.position, hit.transform.position, Color.blue, 0.5f, true);
-        //return Physics.Raycast(ray, out hit, 3500);
+
         if (Vector3.Distance(this.transform.position, maps) < 100f)
         {
-            //this.transform.LookAt(maps);
-           // CamearTrans.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x + 20, -transform.localEulerAngles.y, 0);
+            RayMoveCamera();
             PlayMove();
         }
     }
@@ -122,7 +116,6 @@ public class RayMove : MonoBehaviour
     void PlayMove()
     {
         this.transform.position = Vector3.Slerp(this.transform.position, maps, 0.1f);
-        //this.transform.LookAt(maps);
         if (Vector3.Distance(this.transform.position, maps) > 0.1f )
         {
             if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
@@ -160,9 +153,9 @@ public class RayMove : MonoBehaviour
             }
             else if (Input.GetAxis("Mouse Y") > 0)
             {
-                if (CamearTrans.transform.localEulerAngles.x < 10)
+                if (CamearTrans.transform.localEulerAngles.x > 340)
                 {
-                    CamearTrans.transform.localEulerAngles = new Vector3(0, CamearTrans.transform.localEulerAngles.y, 0);
+                    CamearTrans.transform.localEulerAngles = new Vector3(350, CamearTrans.transform.localEulerAngles.y, 0);
                 }
                 else
                 {
@@ -181,19 +174,31 @@ public class RayMove : MonoBehaviour
     void CamerTrans()
     {
         CamearTrans.transform.LookAt(this.transform.position);
-        Debug.Log(CamearTrans.transform.localEulerAngles.x);
-        CamearTrans.transform.localEulerAngles = new Vector3(CameTrans.localEulerAngles.x-20, CameTrans.localEulerAngles.y, 0);        
-        Debug.Log(CamearTrans.transform.localEulerAngles.x);
+        //Debug.Log(CamearTrans.transform.localEulerAngles.x);
+        if(CamearTrans.transform.localEulerAngles.x > 300)
+        {
+            CamearTrans.transform.localEulerAngles = new Vector3(CameTrans.localEulerAngles.x + 20, CameTrans.localEulerAngles.y, 0);
+        }
+        else
+        {
+            CamearTrans.transform.localEulerAngles = new Vector3(CameTrans.localEulerAngles.x - 20, CameTrans.localEulerAngles.y, 0);        
+        }
+        //Debug.Log(CamearTrans.transform.localEulerAngles.x);
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log(collision + "1");
-    //    //movelimit = false;
-    //}
+    void RayMoveCamera()
+    {
+        Vector3 InitCoor = CamearTrans.transform.position;
+        this.transform.LookAt(maps);
+        CamearTrans.transform.position = InitCoor;
+        CamerTrans();
+    }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    Debug.Log(other + "2");
-    //}
+    void KeyBoardMoveCamera(float move)
+    {
+        Vector3 InitCoor = CamearTrans.transform.position;
+        this.transform.Translate(0, 0, move * MoveSpeed);
+        CamearTrans.transform.position = InitCoor;
+        CamerTrans();
+    }
 }
