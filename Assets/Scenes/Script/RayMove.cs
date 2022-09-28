@@ -59,23 +59,37 @@ public class RayMove : MonoBehaviour
 
         if (Input.GetAxis("Vertical") != 0)
         {
-            KeyBoardMoveCamera(Input.GetAxis("Vertical") ,"V");
-            //if (Input.GetAxis("Vertical") < 0)
-            //{
-            //    //transform.localEulerAngles = new Vector3(0, CamearTrans.transform.localEulerAngles.y + 180, 0);
-            //    this.transform.Translate(0, 0, -Input.GetAxis("Vertical") * MoveSpeed);
-            //}
-            //else
-            //{
-            //    //transform.localEulerAngles = new Vector3(0, CamearTrans.transform.localEulerAngles.y, 0);
-            //    this.transform.Translate(0, 0, Input.GetAxis("Vertical") * MoveSpeed);
-            //}
+
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
+            {
+                KeyBoardMoveCamera(Input.GetAxis("Vertical") ,"V");
+            }
+
+            if (Input.GetAxis("Vertical") < 0)
+            {
+                this.transform.Translate(0, 0, -Input.GetAxis("Vertical") * MoveSpeed);
+            }
+            else
+            {
+                this.transform.Translate(0, 0, Input.GetAxis("Vertical") * MoveSpeed);
+            }
         }
 
         if (Input.GetAxis("Horizontal") != 0)
         {
-            KeyBoardMoveCamera(Input.GetAxis("Horizontal"), "H");
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
+            {
+                KeyBoardMoveCamera(Input.GetAxis("Horizontal"), "H");
+            }
             //this.transform.Translate(0, 0, Input.GetAxis("Horizontal") * MoveSpeed);
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                this.transform.Translate(0, 0, -Input.GetAxis("Horizontal") * MoveSpeed);
+            }
+            else
+            {
+                this.transform.Translate(0, 0, Input.GetAxis("Horizontal") * MoveSpeed);
+            }
         }
 
         if (Input.GetAxis("Jump") != 0 && transform.position.y <= 3)
@@ -204,26 +218,26 @@ public class RayMove : MonoBehaviour
         switch (direc)
         {
             case "V":
-                //if (move < 0)
-                //{
-                //    this.transform.localEulerAngles = new Vector3(0, CamearTrans.transform.localEulerAngles.y + 180, 0);
-                //}
-                //else
-                //{
-                //    this.transform.localEulerAngles = new Vector3(0, CamearTrans.transform.localEulerAngles.y, 0);
-                //}
-                this.transform.Translate(0, 0, move * MoveSpeed);
+                if (move < 0)
+                {
+                    this.transform.localEulerAngles = new Vector3(0, CamearTrans.transform.rotation.y + 180, 0);
+                }
+                else
+                {
+                    this.transform.localEulerAngles = new Vector3(0, CamearTrans.transform.rotation.y, 0);
+                }
+                //this.transform.Translate(0, 0, move * MoveSpeed);
                 break;
             case "H":
-                //if (move < 0)
-                //{
-                //    this.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y + 270, transform.localEulerAngles.z);
-                //}
-                //else
-                //{
-                //    this.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y + 90, transform.localEulerAngles.z);
-                //}
-                this.transform.Translate(move * MoveSpeed, 0, 0);
+                if (move < 0)
+                {
+                    this.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.rotation.y + 270, transform.localEulerAngles.z);
+                }
+                else
+                {
+                    this.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.rotation.y + 90, transform.localEulerAngles.z);
+                }
+                //this.transform.Translate(move * MoveSpeed, 0, 0);
                 break;
         }
 
