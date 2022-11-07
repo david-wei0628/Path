@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RayType.Move;
 
 public class RayMove : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class RayMove : MonoBehaviour
     Ray ray;
     RaycastHit hit;
     Vector3 maps;
+    RayT rayT;
     //bool movelimit = true;
+    public GameObject MouseVFX;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +28,7 @@ public class RayMove : MonoBehaviour
         CamearTrans.transform.position = new Vector3(PlayTrans.position.x, PlayTrans.position.y + 4, PlayTrans.position.z - 7);
         this.transform.localEulerAngles = new Vector3(0,0,0);
         offset = CameTrans.position - PlayTrans.position;
-        MoveSpeed = Time.deltaTime * 5;
+        MoveSpeed = Time.deltaTime * 20;
         CameTrans.position = offset + PlayTrans.position;
         CamerTrans();
     }
@@ -33,7 +36,6 @@ public class RayMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SeBox.transform.localEulerAngles = new Vector3(0, CamearTrans.transform.localEulerAngles.y, 0);
         if (Input.GetAxis("Mouse ScrollWheel") != 0)
         {
             ScrollView();
@@ -51,15 +53,17 @@ public class RayMove : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Z))
         {
-            Debug.Log("LocoR" + CamearTrans.transform.localEulerAngles);
-            Debug.Log("LocoP" + CamearTrans.transform.localPosition);
-            Debug.Log("Rot" + CamearTrans.transform.rotation);
-            Debug.Log("Pos" + CamearTrans.transform.position);
+            //Debug.Log(SeBox.transform.localEulerAngles.y);
+            //Debug.Log(CamearTrans.transform.localRotation.y);
+            //Debug.Log(transform.localEulerAngles.y);
+            //maps = rayT.SelectRay(CamearTrans);
+            //Debug.Log(VFX.transform.position);
+            //Destroy(MouseVFX);
         }
 
         if (Input.GetAxis("Vertical") != 0)
         {
-
+            //Debug.Log(this.GetComponent<Rigidbody>().velocity.magnitude);
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
             {
                 KeyBoardMoveCamera(Input.GetAxis("Vertical") ,"V");
@@ -77,6 +81,7 @@ public class RayMove : MonoBehaviour
 
         if (Input.GetAxis("Horizontal") != 0)
         {
+            //Debug.Log(this.GetComponent<Rigidbody>().velocity.magnitude);
             if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
             {
                 KeyBoardMoveCamera(Input.GetAxis("Horizontal"), "H");
@@ -92,9 +97,10 @@ public class RayMove : MonoBehaviour
             }
         }
 
-        if (Input.GetAxis("Jump") != 0 && transform.position.y <= 3)
+        if (Input.GetAxis("Jump") == 1 && transform.localPosition.y <= 0.06f)
         {
-            this.transform.Translate(0, Input.GetAxis("Jump") * MoveSpeed, 0);
+            PlayJump();
+            //Debug.Log(Input.GetAxis("Jump"));
         }
 
     }
@@ -124,6 +130,7 @@ public class RayMove : MonoBehaviour
         maps.y = this.transform.position.y;
         Debug.DrawLine(CamearTrans.transform.position, hit.transform.position, Color.blue, 0.5f, true);
 
+        Instantiate(MouseVFX, maps, new Quaternion(0, 0, 0,0));
         if (Vector3.Distance(this.transform.position, maps) < 100f)
         {
             RayMoveCamera();
@@ -138,13 +145,30 @@ public class RayMove : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
             { 
-                Invoke("PlayMove", 0.05f); 
+                Invoke("PlayMove", 0.05f);
             }
             else
             {
                 return;
             }
         }
+    }
+
+    void PlayJump()
+    {
+        transform.localPosition += new Vector3(0, 100, 0) * Time.deltaTime;
+        if (transform.localPosition.y < 4)
+        {
+            Invoke("PlayJump", 0.01f);
+        }
+        else
+        {
+            return ;
+        }
+        //if (transform.position.y < 3)
+        //{
+        //    Invoke("PlayJump", 0.05f);
+        //}
     }
 
     void CameRat()
@@ -215,27 +239,29 @@ public class RayMove : MonoBehaviour
     void KeyBoardMoveCamera(float move,string direc)
     {
         Vector3 InitCoor = CamearTrans.transform.position;
+        float PlayEulerY;
+        PlayEulerY = transform.localEulerAngles.y + CamearTrans.transform.localEulerAngles.y;
         switch (direc)
         {
             case "V":
                 if (move < 0)
                 {
-                    this.transform.localEulerAngles = new Vector3(0, CamearTrans.transform.rotation.y + 180, 0);
+                    this.transform.localEulerAngles = new Vector3(0, PlayEulerY + 180, 0);
                 }
                 else
                 {
-                    this.transform.localEulerAngles = new Vector3(0, CamearTrans.transform.rotation.y, 0);
+                    this.transform.localEulerAngles = new Vector3(0, PlayEulerY, 0);
                 }
                 //this.transform.Translate(0, 0, move * MoveSpeed);
                 break;
             case "H":
                 if (move < 0)
                 {
-                    this.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.rotation.y + 270, transform.localEulerAngles.z);
+                    this.transform.localEulerAngles = new Vector3(0, PlayEulerY + 270, 0);
                 }
                 else
                 {
-                    this.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.rotation.y + 90, transform.localEulerAngles.z);
+                    this.transform.localEulerAngles = new Vector3(0, PlayEulerY + 90, 0);
                 }
                 //this.transform.Translate(move * MoveSpeed, 0, 0);
                 break;
